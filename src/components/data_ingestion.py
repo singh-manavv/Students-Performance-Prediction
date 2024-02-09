@@ -24,6 +24,7 @@ class DataIngestion:
             logging.info('Reading data from the dataset')
             
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
+            df.columns = df.columns.str.replace(r'[, /]','_',regex=True)
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
             
             logging.info('Splitting the dataset into training and testing data')
